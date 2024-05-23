@@ -18,26 +18,31 @@
       </div>
 
       <!-- navbar, make responsive filter menu -->
-      <div class="w-4/6 p-2 flex flex-row text-center text-emerald-50 text-xl">
-        <div id="homebtn" class="w-1/5 border-emerald-50 border-2 rounded-l-lg hover:text-[21px]">
-          <h2 class="p-[12px]">⌂</h2>
-        </div>
-        <div id="portbtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
-          <h2 class="p-[12px]">portfolio</h2>
-        </div>
-        <div id="gallbtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
-          <h2 class="p-[12px]">gallery</h2>
-        </div>
-        <div id="menubtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
-          <h2 class="p-[12px]">☰</h2>
-        </div>
-        <div id="settbtn" class="w-1/5 border-emerald-50 border-2 rounded-r-lg hover:text-[21px]">
-          <h2 class="p-[12px]">⚙</h2>
+      <div class="relative flex items-center py-4 mt-6">
+        <div id="dash" class="absolute w-full border-t-[2px] border-dashed border-emerald-50 -z-10"></div>
+        <div class="absolute w-4/6 ml-8 p-2 flex flex-row text-center text-emerald-50 bg-black text-xl z-10">
+          <div id="homebtn" class="w-1/5 border-emerald-50 border-2 rounded-l-lg hover:text-[21px]">
+            <h2 class="p-[12px]">⌂</h2>
+          </div>
+          <div id="portbtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
+            <h2 class="p-[12px]">portfolio</h2>
+          </div>
+          <div id="gallbtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
+            <h2 class="p-[12px]">gallery</h2>
+          </div>
+          <div id="menubtn" class="w-1/5 border-emerald-50 border-2 hover:text-[21px]">
+            <h2 class="p-[12px]">☰</h2>
+          </div>
+          <div id="settbtn" class="w-1/5 border-emerald-50 border-2 rounded-r-lg hover:text-[21px]">
+            <h2 class="p-[12px]">⚙</h2>
+          </div>
         </div>
       </div>
       
+    
+      
       <!-- containers for pages -->
-      <div id="page-container" class="relative w-full mt-2">
+      <div id="page-container" class="relative w-full mt-8">
         <!-- home page -->
         <div id="homepage" class="z-0 absolute w-full text-center">
           <span class="text-emerald-50">testing home</span>
@@ -55,7 +60,7 @@
       </div>
 
       <!-- menu drop down -->
-      <div id="menudrop" class="w-[13%] ml-[40%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-center text-emerald-50" style="display: none;">
+      <div id="menudrop" class="w-[14%] ml-[41.25%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-center text-emerald-50" style="display: none;">
         <div class="hover:bg-emerald-700 hover:text-[17px] rounded-t-lg">
           <h3 class="py-3 border-b-[1px]">contact</h3>
         </div>
@@ -63,7 +68,7 @@
           <h3 class="py-3 border-b-[1px]">github</h3>
         </div>
         <div class="hover:bg-emerald-700 hover:text-[17px]">
-          <h3 class="py-3 border-b-[1px]">instagram</h3>
+          <h3 class="py-3 border-b-[1px]">dungeon synths</h3>
         </div>
         <div class="hover:bg-emerald-700 hover:text-[17px] rounded-b-lg">
           <h3 class="py-3">moxfield</h3>
@@ -71,7 +76,7 @@
       </div>
       
       <!-- settings drop down -->
-      <div id="settingsdrop" class="w-[35%] ml-[53%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-emerald-50" style="display: none;">
+      <div id="settingsdrop" class="w-[35%] ml-[55%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-emerald-50" style="display: none;">
         <!-- banner animation speed slider -->
         <div class="rounded-t-lg flex flex-row pl-8">
           <div>
@@ -108,7 +113,8 @@
           <div class="pt-[22px] mx-5"><div id="2ndamber" class="bg-amber-950 w-[30px] h-[30px] rounded-sm"></div></div>
           <div class="pt-[22px] mx-5"><div id="2ndrose" class="bg-rose-400 w-[30px] h-[30px] rounded-sm"></div></div>
         </div>
-        <!-- todo: - add slider for primary accent color opacity
+        <!-- todo: - add color palet options for banner animation
+                   - add slider for primary accent color opacity
                    - add color selector for font color
                    - add toggle for light or dark theme
                     -->

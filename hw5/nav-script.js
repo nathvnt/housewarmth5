@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     button.addEventListener('click', handleButtonClick);
   });
 
-  title.addEventListener('mouseover', () => updateBannerAnimationDuration('8s'));
-  title.addEventListener('mouseout', () => updateBannerAnimationDuration('30s'));
+  // title.addEventListener('mouseover', () => updateBannerAnimationDuration('8s'));
+  // title.addEventListener('mouseout', () => updateBannerAnimationDuration('30s'));
 
   menubtn.addEventListener('click', () => {
     settingsdrop.style.display = 'none';
@@ -216,6 +216,7 @@ function updateAccentColor(color) {
 function updateSecondaryAccentColor(color) {
   const elementsWithBorders = [
     document.getElementById('banner'),
+    document.getElementById('dash'),
     document.getElementById('menudrop'),
     document.getElementById('settingsdrop')
   ];
