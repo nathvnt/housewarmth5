@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   menubtn.addEventListener('click', () => {
     settingsdrop.style.display = 'none';
+    settbtn.style.backgroundColor = '';
     if (menudrop.style.display != 'block') {
       menudrop.style.display = 'block';
       menubtn.style.backgroundColor = '#047857';
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   settbtn.addEventListener('click', () => {
     menudrop.style.display = 'none';
+    menubtn.style.backgroundColor = '';
     if (settingsdrop.style.display != 'block') {
       settingsdrop.style.display = 'block';
       settbtn.style.backgroundColor = '#047857';
@@ -102,10 +104,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   function handleButtonClick(event) {
     const clickedButtonId = event.currentTarget.id;
-
-    if (clickedButtonId === 'menubtn' || clickedButtonId === 'settbtn') {
-      return;
-    }
 
     Object.values(pages).forEach(page => {
       if (page) {
