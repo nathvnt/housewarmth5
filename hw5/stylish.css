@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 body {
+  background-color: black;
   font-family: "Share Tech Mono", monospace;
+  color: #ecfdf5;
 }
 
 #banner {
@@ -34,7 +36,7 @@ body {
   grid-column: 3/5;
   padding-bottom: 1%;
   text-shadow: black;
-  color: rgba(255, 255, 240, .85);
+  /* color: rgba(255, 255, 240, .85); */
   font-family: 'Share Tech Mono', monospace;
   animation-name: spin, depth;
   animation-timing-function: linear;
@@ -93,7 +95,7 @@ body {
   -webkit-appearance: none;
   width: 100%;
   height: 12px;
-  background: #047857;
+  background: var(--primary-color);
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -118,4 +120,25 @@ body {
   height: 20px;
   background: #fff;
   cursor: pointer;
+}
+
+.hover-primary {
+  background-color: black;
+}
+
+.hover-primary:hover {
+  background-color: var(--primary-color);
+}
+
+canvas {
+  border: 1px solid white;
+  display: block;
+  margin: 0 auto;
+}
+
+#startButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
 }

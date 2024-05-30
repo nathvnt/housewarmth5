@@ -6,13 +6,16 @@
         <title>HouseWarmth</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="stylish.css">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     </head>
-    <body class="bg-black">
+    <body class="">
       <!-- head, just putting title here -->
       <div id="banner" class="w-full border-b-2 border-emerald-50">
 
         <div class="w-[20%] text-center p-6">
-          <h1 id="title" class="text-emerald-50 text-6xl hover:underline">housewarmth</h1>
+          <h1 id="title" class="text-6xl hover:underline">housewarmth</h1>
         </div>
   
       </div>
@@ -20,7 +23,7 @@
       <!-- navbar, make responsive filter menu -->
       <div class="relative flex items-center py-4 mt-6">
         <div id="dash" class="absolute w-full border-t-[2px] border-dashed border-emerald-50 -z-10"></div>
-        <div class="absolute w-4/6 ml-8 p-2 flex flex-row text-center text-emerald-50 bg-black text-xl z-10">
+        <div id="nav" class="absolute w-4/6 ml-8 p-2 flex flex-row text-center bg-black text-xl z-10">
           <div id="homebtn" class="w-1/5 border-emerald-50 border-2 rounded-l-lg hover:text-[21px]">
             <h2 class="p-[12px]">⌂</h2>
           </div>
@@ -45,38 +48,68 @@
       <div id="page-container" class="relative w-full mt-8">
         <!-- home page -->
         <div id="homepage" class="z-0 absolute w-full text-center">
-          <span class="text-emerald-50">testing home</span>
+          <span class="text-[17px]"><br><br><br>Welcome to version 5; feel free to have a look around.<br><br>
+            housewarmth.com was first purchased in the fourth quarter of 2020, 
+            <br><br>with the flagship iteration originally published in 2021.
+            <br><br>This serves as my personal website, showcasing JavaScript animations, 
+            <br><br>design philosophies, & portfolio pieces.
+            <br><br><br>Thank you.</span>
         </div>
       
         <!-- portfolio page -->
-        <div id="portfoliopage" class="z-0 absolute w-full text-center">
-          <span class="text-emerald-50">testing portfolio</span>
+        <div id="portfoliopage" class="z-0 absolute w-full text-center hidden">
+          <canvas id="gameCanvas" width="720" height="480"></canvas>
+          <button id="startButton">Start Game</button>
+          <script src="snake.js"></script>
+          <h3 class="py-6 text-xl">PrivacyQuest</h3>
+            <span class="text-[17px]">This is a CLI security tool for performing OSINT research and discovering<br>
+              personal information that data-brokers are publishing. It utilizes Puppeteer JS to<br>
+                crawl and scrape various data-brokers sites, collecting information based on given input.<br><br>
+                This tool is designed to be used for helping individuals <br>
+                remove information they do not want data-brokers profiting from.
+              </span>
+              <h3 class="py-6 text-lg">Link to Github :</h3><br><br>
+ 
         </div>
       
         <!-- gallery page -->
-        <div id="gallerypage" class="z-0 absolute w-full">
-          <h3 class="text-emerald-50 ">testing gallery</h3>
+        <div id="gallerypage" class="z-0 absolute w-1/2 ml-[25%] hidden flex-col items-center justify-center">
+          <h3 class="text-center text-[17px] my-8">video gallery</h3>
+          <!-- Swiper -->
+          <div class="swiper-container overflow-hidden">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide flex items-center justify-center"><video src="gallery/hwgal1.mp4" autoplay loop controls class="w-full "></video></div>
+              <div class="swiper-slide flex items-center justify-center"><video src="gallery/hwgal2.mp4" autoplay loop controls class="w-full"></video></div>
+              <div class="swiper-slide flex items-center justify-center"><video src="gallery/hwgal3.mp4" autoplay loop controls class="w-full"></video></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
         </div>
+        
       </div>
 
       <!-- menu drop down -->
-      <div id="menudrop" class="top-[190px] w-[14%] ml-[41.25%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-center text-emerald-50" style="display: none;">
-        <div class="hover:bg-emerald-700 hover:text-[17px] rounded-t-lg">
+      <div id="menudrop" class="top-[190px] w-[14%] ml-[41.25%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-center" style="display: none;">
+        <div class=" hover:text-[17px] rounded-t-lg">
           <h3 class="py-3 border-b-[1px]">contact</h3>
         </div>
-        <div class="hover:bg-emerald-700 hover:text-[17px]">
+        <div class=" hover:text-[17px]">
           <h3 class="py-3 border-b-[1px]">github</h3>
         </div>
-        <div class="hover:bg-emerald-700 hover:text-[17px]">
+        <div class=" hover:text-[17px]">
           <h3 class="py-3 border-b-[1px]">dungeon synths</h3>
         </div>
-        <div class="hover:bg-emerald-700 hover:text-[17px] rounded-b-lg">
+        <div class=" hover:text-[17px] rounded-b-lg">
           <h3 class="py-3">moxfield</h3>
         </div>
       </div>
       
       <!-- settings drop down -->
-      <div id="settingsdrop" class="top-[190px] w-[35%] ml-[55%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2 text-emerald-50" style="display: none;">
+      <div id="settingsdrop" class="top-[190px] w-[35%] ml-[55%] rounded-lg z-10 absolute bg-black border-emerald-50 border-2" style="display: none;">
         <!-- banner animation speed slider -->
         <div class="rounded-t-lg flex flex-row pl-8">
           <div>
@@ -108,18 +141,53 @@
             <h3 class="p-6">Secondary Accent Color: </h3>
           </div>
           <div class="pt-[22px] mr-5 ml-1"><div id="2ndwhite" class="bg-emerald-50 w-[30px] h-[30px] rounded-sm"></div></div>
-          <div class="pt-[22px] mx-5"><div id="2ndgrey" class="bg-neutral-400 w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5"><div id="2ndgrey" class="bg-neutral-800 w-[30px] h-[30px] rounded-sm"></div></div>
           <div class="pt-[22px] mx-5"><div id="2ndcyan" class="bg-cyan-200 w-[30px] h-[30px] rounded-sm"></div></div>
-          <div class="pt-[22px] mx-5"><div id="2ndamber" class="bg-amber-950 w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5"><div id="2ndred" class="bg-red-800 w-[30px] h-[30px] rounded-sm"></div></div>
           <div class="pt-[22px] mx-5"><div id="2ndrose" class="bg-rose-400 w-[30px] h-[30px] rounded-sm"></div></div>
+        </div>
+
+        <!-- <div class="flex flex-row pl-8">
+          <div>
+            <h3 class="p-6">Theme Selection: </h3>
+          </div>
+          <div class="pt-[22px] mr-5 ml-1 flex flex-row"><h3 class="pr-4">Light</h3><div id="lighttheme" class="bg-[#FFFFF0] w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5 flex flex-row"><h3 class="pr-4">Dark</h3><div id="darktheme" class="bg-neutral-800 w-[30px] h-[30px] rounded-sm"></div></div>
+        </div> -->
+
+        <div class="flex flex-row pl-8">
+          <div>
+            <h3 class="p-6">Font Color Selection: </h3>
+          </div>
+          <div class="pt-[22px] mr-5 ml-5"><div id="fontwhite" class="bg-emerald-50 w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5"><div id="fontblack" class="bg-neutral-800 w-[30px] h-[30px] rounded-sm border-[1px]"></div></div>
+          <div class="pt-[22px] mx-5"><div id="fontlime" class="bg-lime-600 w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5"><div id="fontteal" class="bg-teal-500 w-[30px] h-[30px] rounded-sm"></div></div>
+          <div class="pt-[22px] mx-5"><div id="fontred" class="bg-rose-500 w-[30px] h-[30px] rounded-sm"></div></div>
         </div>
         <!-- todo: - add color palet options for banner animation
                    - add slider for primary accent color opacity
-                   - add color selector for font color
                    - add toggle for light or dark theme
                     -->
       </div>
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="nav-script.js"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          });
+        });
+      </script>
+      
     </body>
 </html>

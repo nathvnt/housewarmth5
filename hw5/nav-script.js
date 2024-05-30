@@ -1,5 +1,20 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-  const buttons = document.querySelectorAll('#homebtn, #portbtn, #gallbtn, #menubtn, #settbtn');
+$(document).ready(function () {
+  const buttons = {
+    homepage: "#homebtn",
+    portfoliopage: "#portbtn",
+    gallerypage: "#gallbtn",
+    menudrop: "#menubtn",
+    settingsdrop: "#settbtn"
+  };
+
+  const pagecontainers = {
+    homepage: "#homepage",
+    portfoliopage: "#portfoliopage",
+    gallerypage: "#gallerypage",
+    menudrop: "#menudrop",
+    settingsdrop: "#settingsdrop"
+  };
+
   const primaryColorSelectors = {
     '1stemerald': '#047857',
     '1stviolet': '#6d28d9',
@@ -7,64 +22,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
     '1storange': '#f97316',
     '1stred': '#ef4444'
   };
+
   const secondaryColorSelectors = {
     '2ndwhite': '#ecfdf5',
     '2ndgrey': '#a3a3a3',
     '2ndcyan': '#a5f3fc',
-    '2ndamber': '#451a03',
+    '2ndred': '#991b1b',
     '2ndrose': '#fb7185'
   };
 
-  const pages = {
-    homebtn: document.getElementById('homepage'),
-    portbtn: document.getElementById('portfoliopage'),
-    gallbtn: document.getElementById('gallerypage'),
-    menubtn: null, // No page associated
-    settbtn: null  // No page associated
-  };
+  const fontColorSelectors = {
+    'fontwhite': '#ecfdf5',
+    'fontblack': '#a3a3a3',
+    'fontlime': '#65a30d',
+    'fontteal': '#14b8a6',
+    'fontred': '#f43f5e'
+  }
 
-  const title = document.getElementById('title');
-  const menubtn = document.getElementById('menubtn');
-  const menudrop = document.getElementById('menudrop');
-  const settbtn = document.getElementById('settbtn');
-  const settingsdrop = document.getElementById('settingsdrop');
-  const speedSlider = document.getElementById('speedSlider');
+  const backgroundColorSelectors = {
+    'lighttheme': '#FFFFF0',
+    'darktheme': '#000000'
+  }
 
-  let selectedPrimaryColorDiv = document.getElementById('1stemerald');
-  let selectedSecondaryColorDiv;
+  let fontColor = '#ecfdf5';
+  let selectedFontColor = "fontwhite";
+  let bgcolor = '#000000';
+  let selectedbgcolor = 'bgblack';
+  let primaryColor = "#047857"; // Default primary color
+  let selectedPrimaryColorSelector = "1stemerald"; // Default selected color
+  let secondaryColor = '#ecfdf5';
+  let selectedSecondaryColorSelector = "2ndwhite";
 
-  buttons.forEach(button => {
-    button.addEventListener('mouseover', handleMouseEnter);
-    button.addEventListener('mouseout', handleMouseLeave);
-    button.addEventListener('click', handleButtonClick);
-  });
-
-  // title.addEventListener('mouseover', () => updateBannerAnimationDuration('8s'));
-  // title.addEventListener('mouseout', () => updateBannerAnimationDuration('30s'));
-
-  menubtn.addEventListener('click', () => {
-    settingsdrop.style.display = 'none';
-    settbtn.style.backgroundColor = '';
-    if (menudrop.style.display != 'block') {
-      menudrop.style.display = 'block';
-      menubtn.style.backgroundColor = '#047857';
-    } else {
-      menudrop.style.display = 'none';
-      menubtn.style.backgroundColor = '';
-    }
-  });
-
-  settbtn.addEventListener('click', () => {
-    menudrop.style.display = 'none';
-    menubtn.style.backgroundColor = '';
-    if (settingsdrop.style.display != 'block') {
-      settingsdrop.style.display = 'block';
-      settbtn.style.backgroundColor = '#047857';
-    } else {
-      settingsdrop.style.display = 'none';
-      settbtn.style.backgroundColor = '';
-    }
-  });
 
   speedSlider.addEventListener('input', () => {
     const duration = `${speedSlider.value}s`;
@@ -72,161 +60,178 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log(duration);
   });
 
-  Object.keys(primaryColorSelectors).forEach(id => {
-    const colorDiv = document.getElementById(id);
-    colorDiv.addEventListener('click', () => {
-      updateAccentColor(primaryColorSelectors[id]);
-      updateSelectedPrimaryColorDiv(colorDiv);
+  function updateButtonColors() {
+    const defaultColor = "black"; // Replace with your default color
+
+    // Reset all button backgrounds to default color
+    Object.values(buttons).forEach(button => {
+      $(button).css("background-color", defaultColor);
     });
+
+    // Check which page container is visible and update the corresponding button color
+    for (let page in pagecontainers) {
+      if ($(pagecontainers[page]).is(":visible")) {
+        $(buttons[page]).css("background-color", primaryColor);
+      }
+    }
+
+    // Update the background color of buttons inside #menudrop on hover
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
+  }
+
+  function upodateBgColor() {
+    document.body.style.backgroundColor = bgcolor;
+    document.getElementById("nav").style.backgroundColor = bgcolor;
+    if (bgcolor === '#FFFFF0') {
+      fontColor = '#000000';
+      secondaryColor = '#a3a3a3';
+      updateSecondaryColors();
+      updateFontColor();
+      document.getElementById("menudrop").style.backgroundColor = '#FFFFF0';
+      document.getElementById("settingsdrop").style.backgroundColor = '#FFFFF0';
+    }
+
+  }
+  function updateFontColor() {
+    document.body.style.color = fontColor;
+  }
+
+  function updateSecondaryColors() {
+    Object.values(buttons).forEach(button => {
+      $(button).css("border-color", secondaryColor);
+    });
+    document.getElementById("dash").style.borderColor = secondaryColor;
+    document.getElementById("banner").style.borderColor = secondaryColor;
+    document.getElementById("menudrop").style.borderColor = secondaryColor;
+    document.getElementById("settingsdrop").style.borderColor = secondaryColor;
+  }
+
+  function updatePrimaryColorBorder() {
+    // Remove border from all primary color selectors
+    Object.keys(primaryColorSelectors).forEach(selector => {
+      $("#" + selector).css("border", "none");
+    });
+
+    // Add border to the selected primary color selector
+    $("#" + selectedPrimaryColorSelector).css("border", "2px solid white");
+
+    Object.keys(secondaryColorSelectors).forEach(selector => {
+      $("#" + selector).css("border", "none");
+    });
+
+    // Add border to the selected primary color selector
+    $("#" + selectedSecondaryColorSelector).css("border", "2px solid white");
+
+    Object.keys(fontColorSelectors).forEach(selector => {
+      $("#" + selector).css("border", "none");
+    });
+
+    // Add border to the selected primary color selector
+    $("#" + selectedFontColor).css("border", "2px solid white");
+
+    Object.keys(backgroundColorSelectors).forEach(selector => {
+      $("#" + selector).css("border", "none");
+    });
+
+    // Add border to the selected primary color selector
+    $("#" + selectedbgcolor).css("border", "2px solid white");
+  }
+
+  // Update button colors on page load
+  updateButtonColors();
+  updateSecondaryColors();
+  // Set initial border for the default primary color selector
+  updatePrimaryColorBorder();
+
+  // Update button colors on button clicks
+  $("#homebtn").click(function () {
+    $("#homepage").css("display", "block");
+    $("#portfoliopage").css("display", "none");
+    $("#gallerypage").css("display", "none");
+    updateButtonColors();
   });
 
-  Object.keys(secondaryColorSelectors).forEach(id => {
-    const colorDiv = document.getElementById(id);
-    colorDiv.addEventListener('click', () => {
-      updateSecondaryAccentColor(secondaryColorSelectors[id]);
-      updateSelectedSecondaryColorDiv(colorDiv);
-    });
+  $("#portbtn").click(function () {
+    $("#portfoliopage").css("display", "block");
+    $("#homepage").css("display", "none");
+    $("#gallerypage").css("display", "none");
+    updateButtonColors();
   });
 
-  function handleMouseEnter(event) {
-    const element = event.currentTarget;
-    if (!element.classList.contains('active')) {
-      element.style.backgroundColor = '#047857';
+  $("#gallbtn").click(function () {
+    $("#gallerypage").css("display", "block");
+    $("#homepage").css("display", "none");
+    $("#portfoliopage").css("display", "none");
+    updateButtonColors();
+  });
+
+  $("#menubtn").click(function () {
+    if ($("#menudrop").is(":visible")) {
+      $("#menudrop").css("display", "none");
+    } else {
+      $("#menudrop").css("display", "block");
+      $("#settingsdrop").css("display", "none");
     }
-  }
+    updateButtonColors();
+  });
 
-  function handleMouseLeave(event) {
-    const element = event.currentTarget;
-    if (!element.classList.contains('active')) {
-      element.style.backgroundColor = '';
+  $("#settbtn").click(function () {
+    if ($("#settingsdrop").is(":visible")) {
+      $("#settingsdrop").css("display", "none");
+    } else {
+      $("#settingsdrop").css("display", "block");
+      $("#menudrop").css("display", "none");
     }
-  }
+    updateButtonColors();
+  });
 
-  function handleButtonClick(event) {
-    const clickedButtonId = event.currentTarget.id;
-
-    Object.values(pages).forEach(page => {
-      if (page) {
-        page.style.display = 'none';
-      }
+  // Add click event handlers for primary color selectors
+  for (let selector in primaryColorSelectors) {
+    $("#" + selector).click(function () {
+      primaryColor = primaryColorSelectors[selector];
+      selectedPrimaryColorSelector = selector;
+      updatePrimaryColorBorder();
+      updateButtonColors();
     });
-
-    if (pages[clickedButtonId]) {
-      pages[clickedButtonId].style.display = 'block';
-    }
-
-    buttons.forEach(button => {
-      if (button.id !== 'menubtn' && button.id !== 'settbtn') {
-        button.classList.remove('active');
-        button.style.backgroundColor = '';
-      }
+  }
+  for (let selector in secondaryColorSelectors) {
+    $("#" + selector).click(function () {
+      secondaryColor = secondaryColorSelectors[selector];
+      selectedSecondaryColorSelector = selector;
+      updatePrimaryColorBorder();
+      updateSecondaryColors();
     });
-
-    const clickedButton = document.getElementById(clickedButtonId);
-    clickedButton.classList.add('active');
-    clickedButton.style.backgroundColor = '#047857';
   }
-
-  function setInitialState() {
-    Object.values(pages).forEach(page => {
-      if (page) {
-        page.style.display = 'none';
-      }
+  for (let selector in fontColorSelectors) {
+    $("#" + selector).click(function () {
+      fontColor = fontColorSelectors[selector];
+      selectedFontColor = selector;
+      updatePrimaryColorBorder();
+      updateFontColor();
     });
-    pages.gallbtn.style.display = 'block';
-
-    const initialButton = document.getElementById('gallbtn');
-    initialButton.classList.add('active');
-    initialButton.style.backgroundColor = '#047857';
-
-    speedSlider.value = 30;
-    updateBannerAnimationDuration('30s');
-    console.log('Banner animation speed reset to: 30s');
-
-    selectedPrimaryColorDiv.style.border = '2px solid white';
+  }
+  for (let selector in backgroundColorSelectors) {
+    $("#" + selector).click(function () {
+      bgcolor = backgroundColorSelectors[selector];
+      selectedbgcolor = selector;
+      updatePrimaryColorBorder();
+      upodateBgColor();
+    });
   }
 
-  function updateSelectedPrimaryColorDiv(newSelectedDiv) {
-    if (selectedPrimaryColorDiv) {
-      selectedPrimaryColorDiv.style.border = '';
-    }
-    selectedPrimaryColorDiv = newSelectedDiv;
-    selectedPrimaryColorDiv.style.border = '2px solid white';
-  }
-
-  function updateSelectedSecondaryColorDiv(newSelectedDiv) {
-    if (selectedSecondaryColorDiv) {
-      selectedSecondaryColorDiv.style.border = '';
-    }
-    selectedSecondaryColorDiv = newSelectedDiv;
-    selectedSecondaryColorDiv.style.border = '2px solid white';
-  }
-
-  setInitialState();
+  $("#menudrop div").addClass("hover-primary");
 });
 
+function setInitialState() {
+  speedSlider.value = 30;
+  updateBannerAnimationDuration('30s');
+  console.log('Banner animation speed reset to: 30s');
+}
+
+setInitialState();
 function updateBannerAnimationDuration(duration) {
   const banner = document.getElementById("banner");
   banner.style.animationDuration = duration;
 }
 
-function updateAccentColor(color) {
-  const elements = document.querySelectorAll('#homebtn, #portbtn, #gallbtn, #menubtn, #settbtn, #speedSlider, #menudrop > div');
 
-  elements.forEach(element => {
-
-    if (element.classList.contains('active')) {
-      element.style.backgroundColor = color;
-    }
-    if (element.id !== 'speedSlider') {
-      element.addEventListener('mouseover', () => {
-        if (!element.classList.contains('active')) {
-          element.style.backgroundColor = color;
-        }
-      });
-
-      element.addEventListener('mouseout', () => {
-        if (!element.classList.contains('active')) {
-          element.style.backgroundColor = '';
-        }
-      });
-      if (['homebtn', 'portbtn', 'gallbtn', 'menubtn', 'settbtn'].includes(element.id)) {
-        element.addEventListener('click', (event) => {
-          elements.forEach(btn => {
-            if (btn !== event.currentTarget && ['homebtn', 'portbtn', 'gallbtn', 'menubtn', 'settbtn'].includes(btn.id)) {
-              btn.classList.remove('active');
-              btn.style.backgroundColor = '';
-            }
-          });
-
-          element.classList.add('active');
-          element.style.backgroundColor = color;
-        });
-      }
-    }
-    if (element.id === 'speedSlider' || element.parentElement.id === 'menudrop') {
-      element.style.backgroundColor = color;
-    }
-  });
-}
-
-
-function updateSecondaryAccentColor(color) {
-  const elementsWithBorders = [
-    document.getElementById('banner'),
-    document.getElementById('dash'),
-    document.getElementById('menudrop'),
-    document.getElementById('settingsdrop')
-  ];
-  const buttons = document.querySelectorAll('#homebtn, #portbtn, #gallbtn, #menubtn, #settbtn');
-
-  elementsWithBorders.forEach(element => {
-    if (element) {
-      element.style.borderColor = color;
-    }
-  });
-
-  buttons.forEach(button => {
-    button.style.borderColor = color;
-  });
-}
